@@ -17,14 +17,17 @@ class ApplicationController < Sinatra::Base
     list.to_json  #add methods of deleting here and editing
   end
 
-  delete "/lists/:id" do
-    list = List.find(params[:id])
-    list.destroy
-    list.review.to_json
+  delete "/tasks/:id" do
+    task = Task.find(params[:id])
+    task.destroy
+    task.to_json
   end
 
-  # 2 more methods
-  # delete
   # patch
+  get "/complete/:id" do
+    task = Task.find(params[:id])
+    task.toggle_complete
+    task.to_json
+  end 
 
 end
